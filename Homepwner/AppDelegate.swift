@@ -16,6 +16,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+       
+        //create ItemStore
+        let itemStore = ItemStore()
+        
+        //Access ItemsViewController and set its itemStore
+        //When embedded the ItemsVC in the UINavigationController, Ch14 Pg243, made the UINC the rootview
+        //instead of ItemsVC & it broke app, so need to change that here to make new contract to make app work again
+        //let itemsController = window!.rootViewController as! ItemsViewController
+        //pg 244 now add the next 2 lines to update the rootview controller and
+        //make the ItemsVC the UINavigationController's topViewC
+        //UINAvigationController has a back button and sets the ItemsVC to the start of the app
+        let navController =  window!.rootViewController as! UINavigationController
+        let itemsController = navController.topViewController as! ItemsViewController
+        
+        itemsController.itemStore = itemStore //no go to the ItemsStore.swift and implement
+        //the designatoed initializer to add 5 random objects
+        //init(){for _in
+        
         return true
     }
 
